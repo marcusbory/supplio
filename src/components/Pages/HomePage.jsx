@@ -5,6 +5,7 @@ import { useAuth } from "../../contexts/AuthContext"
 
 export const HomePage = () => {
   const { currentUser } = useAuth()
+  //react homepage
 
   // if (!currentUser) {
   //   return <Navigate to="/" />
