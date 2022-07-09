@@ -23,7 +23,7 @@ export function SignUp() {
     try {
       await signup(name, email, password)
       setTimeout(() => {
-        navigate('/home')
+        navigate('/')
       }, 500)
     } catch (error) {
       setError(error.message)

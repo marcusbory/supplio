@@ -20,9 +20,7 @@ export function Login() {
     e.preventDefault()
     try {
       await login(email, password)
-      // setTimeout(() => {
-      //   navigate('/home')
-      // }, 500)
+      navigate('/')
     } catch (error) {
       setError(error.message)
     }

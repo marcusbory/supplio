@@ -17,7 +17,6 @@ function App() {
           <Switch>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            {/* <Route path="/home" element={<PrivateRoute component={<HomePage />} />} /> */}
             <Route exact path="/" element={<HomePage />} />
           </Switch>
         </AuthProvider>
