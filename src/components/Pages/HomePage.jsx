@@ -59,7 +59,7 @@ export const HomePage = () => {
   );
 }
 
-export const Illustration = (props: IconProps) => {
+export const Illustration = (props) => {
   return (
     <Icon
       width="100%"

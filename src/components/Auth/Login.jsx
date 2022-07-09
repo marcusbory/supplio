@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { PageWrapper } from '../common/PageWrapper'
-import { Box, Stack, FormControl, FormLabel, FormHelperText, Input, Button, Alert, AlertIcon, AlertTitle } from '@chakra-ui/react'
+import { Box, Stack, FormControl, FormLabel, FormHelperText, Input, Button, Alert, AlertIcon, AlertTitle, Center } from '@chakra-ui/react'
 import '../../styles/form.css'
 import { useAuth } from '../../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 
 export function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login, loading, setLoading } = useAuth()
+  const { login, loading, setLoading, currentUser } = useAuth()
   const [error, setError] = useState('')
   let navigate = useNavigate()
 
@@ -18,23 +18,19 @@ export function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
     try {
       await login(email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user)
-      })
-      setTimeout(() => {
-        navigate('/home')
-      }, 500)
+      // setTimeout(() => {
+      //   navigate('/home')
+      // }, 500)
     } catch (error) {
       setError(error.message)
-      console.log(error)
     }
   }
 
+  if (currentUser) {
+    return <Navigate to="/home" />
+  }
 
   return (
     <PageWrapper>
@@ -47,26 +43,30 @@ export function Login() {
               <AlertTitle>{error}</AlertTitle>
             </Alert>
           }
-          <FormControl isInvalid={isError(email)}>
-            <FormLabel htmlFor='email'>Email Address</FormLabel>
-            <Input required id='email' type='email' placeholder='mayank@suppl.io'
-              onChange={(e) => setEmail(e.target.value)} />
-          </FormControl>
-          <FormControl isInvalid={isError(password)}>
-            <FormLabel htmlFor='text'>Password</FormLabel>
-            <Input id='password' type='password' required 
-              onChange={(e) => setPassword(e.target.value)} />
-          </FormControl>
-          <Button disabled={loading} w="100%" onClick={(e) => handleSubmit(e)}>
-            SIGN IN
-          </Button>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <FormControl isInvalid={isError(email)}>
+              <FormLabel htmlFor='email'>Email Address</FormLabel>
+              <Input required id='email' type='email' placeholder='mayank@suppl.io'
+                onChange={(e) => setEmail(e.target.value)} />
+            </FormControl>
+            <FormControl isInvalid={isError(password)}>
+              <FormLabel htmlFor='text'>Password</FormLabel>
+              <Input id='password' type='password' required 
+                onChange={(e) => setPassword(e.target.value)} />
+            </FormControl>
+            <Button disabled={loading} w="100%" type="submit" mt="12px">
+              SIGN IN
+            </Button>
+          </form>
         </Stack>
       </Box>
-      <Box>
-        <Button onClick={() => navigate("/signup")}>
-          CLICK HERE TO SIGN UP
-        </Button>
-      </Box>
+      <Center mt="12px">
+        <Box>
+          <Button onClick={() => navigate("/signup")}>
+            CLICK HERE TO SIGN UP
+          </Button>
+        </Box>
+      </Center>
     </PageWrapper>
   )
 }
