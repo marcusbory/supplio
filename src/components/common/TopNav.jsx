@@ -1,6 +1,5 @@
 import {
     Box,
-    Button,
     ButtonGroup,
     Flex,
     Heading,
@@ -10,6 +9,7 @@ import {
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { PrimaryButton, SecondaryButton } from './Button'
 
 export const TopNav = () => {
   const { currentUser, logout } = useAuth()
@@ -22,47 +22,17 @@ export const TopNav = () => {
 
   return (
     <nav>
-      <Box as="nav" bg="bg-surface" boxShadow={useColorModeValue('sm', 'sm-dark')}>
+      <Box as="nav" bg="bg-surface" boxShadow={useColorModeValue('sm', 'sm-dark')} position='fixed' top="0" width="100%">
         <Flex minWidth='max-content' alignItems='center' gap='2'>
           <Box p='3'>
               <Heading size='lg'>SUPPL.IO</Heading>
           </Box>
           <Spacer/>
           { currentUser ? 
-            <Button
-              rounded={'full'}
-              px={6}
-              mr={4}
-              colorScheme={'orange'}
-              bg={'white'}
-              color={'orange'}
-              border={'orange 2px solid'}
-              _hover={{ bg: 'orange.400', color: 'white' }}
-              onClick={handleLogout}>
-              Log Out
-            </Button> :
+            <SecondaryButton text={"Log Out"} fn={handleLogout} style={{ marginRight: '12px' }} /> :
             <ButtonGroup gap='2'>
-              <Button
-                rounded={'full'}
-                px={6}
-                colorScheme={'orange'}
-                bg={'orange.400'}
-                _hover={{ bg: 'orange.500' }}
-                onClick={() => navigate("/signup")}>
-                Sign Up
-              </Button>
-              <Button
-                rounded={'full'}
-                px={6}
-                mr={4}
-                colorScheme={'orange'}
-                bg={'white'}
-                color={'orange'}
-                border={'orange 2px solid'}
-                _hover={{ bg: 'orange.400', color: 'white' }}
-                onClick={() => navigate("/login")}>
-                Log In
-              </Button>
+              <PrimaryButton text={"Sign Up"} fn={() => navigate('/signup')} />
+              <SecondaryButton text={"Log In"} fn={() => navigate('/login')} style={{ marginRight: '12px' }}/>
             </ButtonGroup>
           }
         </Flex>
