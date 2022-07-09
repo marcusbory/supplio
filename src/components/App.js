@@ -11,18 +11,16 @@ import { Login } from './Auth/Login';
 function App() {
   return (
     <ChakraProvider>
-      <PageWrapper>
-        <Router>
-          <AuthProvider>
-            <Switch>
-              <Route path="/signup" element={<SignUp />} />
-              {/* <Route path="/home" element={<PrivateRoute component={<HomePage />} />} /> */}
-              <Route path="/home" element={<HomePage />} />
-              <Route exact path="/" element={<Login />} />
-            </Switch>
-          </AuthProvider>
-        </Router>
-      </PageWrapper>
+      <Router>
+        <AuthProvider>
+          <Switch>
+            <Route path="/signup" element={<SignUp />} />
+            {/* <Route path="/home" element={<PrivateRoute component={<HomePage />} />} /> */}
+            <Route path="/home" element={<HomePage />} />
+            <Route exact path="/" element={<Login />} />
+          </Switch>
+        </AuthProvider>
+      </Router>
     </ChakraProvider>
   );
 }
