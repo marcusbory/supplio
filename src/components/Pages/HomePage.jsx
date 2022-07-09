@@ -7,9 +7,6 @@ export const HomePage = () => {
   const { currentUser } = useAuth()
   //react homepage
 
-  // if (!currentUser) {
-  //   return <Navigate to="/" />
-  // }
 
   return (
     <PageWrapper>
