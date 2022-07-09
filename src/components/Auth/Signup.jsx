@@ -10,7 +10,7 @@ export function SignUp() {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [cfmPassword, setCfmPassword] = useState('')
-  const { signup, loading, setLoading } = useAuth()
+  const { signup } = useAuth()
   const [error, setError] = useState('')
   let navigate = useNavigate()
 
@@ -63,7 +63,7 @@ export function SignUp() {
               <Input id='confirm-password' type='password' required 
                 onChange={(e) => setCfmPassword(e.target.value)} />
             </FormControl>
-            <Button disabled={loading} w="100%" type="submit" mt="12px">
+            <Button w="100%" type="submit" mt="12px">
               SIGN UP
             </Button>
           </form>

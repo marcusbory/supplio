@@ -17,12 +17,6 @@ export const AddItemModal = ({ isOpen, onClose }) => {
   const { currentUser } = useAuth()
   let navigate = useNavigate()
 
-  const printPayload = () => {
-    console.log(name)
-    console.log(amount)
-    console.log(new Date(expiry))
-  }
-
   const handleSubmit = async(e) => {
     e.preventDefault()
     const itemPayload = {
