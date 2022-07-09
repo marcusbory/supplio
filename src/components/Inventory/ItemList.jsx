@@ -1,5 +1,5 @@
-import { Alert, AlertIcon, Box } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
+import { Box, Alert, AlertIcon, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { useAuth } from '../../contexts/AuthContext'
 import { ItemCard } from './ItemCard'
 import { db } from '../../firebase'
@@ -15,7 +15,7 @@ export const ItemList = () => {
     db.collection('users').doc(currentUser.email).collection('items').get().then((docs) => {
       if (docs.docs.length > 0) {
         setItems(
-          docs.docs.map(item => (item.data()))
+          docs.docs.map(item => ({...item.data(), id: item.id}))
                   .sort((a, b) => (a.expiry - b.expiry))
         )
       }
