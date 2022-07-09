@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../../styles/form.css'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext';
 
 import {
   Flex,
@@ -15,6 +16,12 @@ import {
 
 export const HomePage = () => {
   let navigate = useNavigate()
+  const { logout } = useAuth()
+
+  const handleLogout = () => {
+    logout()
+    navigate("/")
+  }
 
   return (
     <Container maxW={'5xl'}>
@@ -46,6 +53,17 @@ export const HomePage = () => {
             _hover={{ bg: 'orange.500' }}
             onClick={() => navigate("/")}>
             Get Started
+          </Button>
+          <Button
+            rounded={'full'}
+            px={6}
+            colorScheme={'orange'}
+            color={'orange'}
+            border={'orange 1px solid'}
+            bg={'white'}
+            _hover={{ bg: 'orange.100' }}
+            onClick={handleLogout}>
+            Log Out
           </Button>
         </Stack>
         <Flex w={'full'}>
