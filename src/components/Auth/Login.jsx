@@ -29,7 +29,7 @@ export function Login() {
   }
 
   if (currentUser) {
-    return <Navigate to="/home" />
+    return <Navigate to="/" />
   }
 
   return (
@@ -38,7 +38,7 @@ export function Login() {
       <Box className="form-box">
         <Stack direction="column">
           {error &&
-            <Alert status='error'>
+            <Alert status='error' maxW="300px">
               <AlertIcon />
               <AlertTitle>{error}</AlertTitle>
             </Alert>
