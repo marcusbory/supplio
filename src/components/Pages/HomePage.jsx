@@ -11,16 +11,15 @@ import {
   Text,
   Button,
   Icon,
-  IconProps,
 } from '@chakra-ui/react';
+import { UserDashboard } from './UserDashboard';
 
 export const HomePage = () => {
   let navigate = useNavigate()
-  const { logout } = useAuth()
+  const { currentUser } = useAuth()
 
-  const handleLogout = () => {
-    logout()
-    navigate("/")
+  if (currentUser) {
+    return <UserDashboard />
   }
 
   return (
@@ -51,19 +50,8 @@ export const HomePage = () => {
             colorScheme={'orange'}
             bg={'orange.400'}
             _hover={{ bg: 'orange.500' }}
-            onClick={() => navigate("/")}>
+            onClick={() => navigate("/signup")}>
             Get Started
-          </Button>
-          <Button
-            rounded={'full'}
-            px={6}
-            colorScheme={'orange'}
-            color={'orange'}
-            border={'orange 1px solid'}
-            bg={'white'}
-            _hover={{ bg: 'orange.100' }}
-            onClick={handleLogout}>
-            Log Out
           </Button>
         </Stack>
         <Flex w={'full'}>
