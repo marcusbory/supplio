@@ -5,6 +5,7 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { SignUp } from './Auth/Signup';
 import { HomePage } from './Pages/HomePage';
 import { Login } from './Auth/Login';
+import { TopNav } from './common/TopNav'
 import '../styles/index.css'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <ChakraProvider>
       <Router>
         <AuthProvider>
+          <TopNav />
           <Switch>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
