@@ -26,9 +26,9 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseBu
         amount,
         expiry: firebase.firestore.Timestamp.fromDate(new Date(expiry))
       }
-    const ref = doc(db.collection('users').doc(currentUser.email), "items", id)
-    await updateDoc(ref, itemPayload)
-    navigate('/')
+      const ref = doc(db.collection('users').doc(currentUser.email), "items", id)
+      await updateDoc(ref, itemPayload)
+      navigate(0)
       onClose()
     }
   
