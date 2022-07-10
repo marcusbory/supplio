@@ -18,7 +18,7 @@ export const ItemCard = ({ item, key }) => {
     e.preventDefault()
     const ref = doc(db.collection('users').doc(currentUser.email), "items", item.id)
     await deleteDoc(ref)
-    navigate('/')
+    navigate(0)
   }
 
   return (
