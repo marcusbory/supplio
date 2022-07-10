@@ -36,7 +36,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseBu
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Add an item</ModalHeader>
+          <ModalHeader>Edit item</ModalHeader>
           <ModalCloseButton />
           <form onSubmit={(e) => handleSubmit(e)}>
             <ModalBody>
